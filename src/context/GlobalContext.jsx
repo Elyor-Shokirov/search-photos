@@ -7,7 +7,7 @@ const dataFromLocal = () => {
       colors: ["#A594f9", "#8FD14F", "#CD5C08"],
       likedImages: [],
       images: [],
-      searchTitle: null,
+      searchTitle: "cars",
     }
   );
 };
@@ -21,16 +21,28 @@ const changeState = (state, action) => {
     case "TAKE_ONCHANGE_INPUT":
       return { ...state, searchTitle: payload };
     case "TAKE_IMAGE_DATA":
+      return { ...state, images: payload };
+    case "ALL_IMAGE_DATA":
       return { ...state, images: [...state.images, ...payload] };
     case "ADD_LIKED_IMAGES":
-      return { ...state, likedImages: payload };
+      return { ...state, likedImages: [...state.likedImages, payload] };
+    case "DELETE":
+      return {
+        ...state,
+        likedImages: state.likedImages.filter((imege) => imege.id !== payload),
+      };
     default:
       return state;
   }
 };
 
 export function GlobalContextProvider({ children }) {
-  const [state, dispatch] = useReducer(changeState, dataFromLocal());
+  const [state, dispatch] = useReducer(changeState, {
+    colors: ["#A594f9", "#8FD14F", "#CD5C08"],
+    likedImages: [],
+    images: [],
+    searchTitle: "cars",
+  });
 
   useEffect(() => {
     localStorage.setItem("my-splash", JSON.stringify(state));

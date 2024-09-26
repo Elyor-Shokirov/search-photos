@@ -7,5 +7,6 @@ export function useGlobalContext() {
   if (!context) {
     throw new Error("useGlobalContext() must be in GlobalContextProvider ");
   }
+
   return context;
 }

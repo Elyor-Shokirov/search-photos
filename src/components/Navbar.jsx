@@ -1,13 +1,8 @@
 import { RiHeartLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { useGlobalContext } from "../hooks/useGlobalContext";
 import Badge from "./badge";
 
 function Navbar() {
-  const { colors } = useGlobalContext();
-
-  console.log(colors);
-
   return (
     <header className={` py-5 focus-within:border-gray-300 shadow-xl`}>
       <div className="max-w-[1440px] m-auto flex justify-between items-center font-bold">

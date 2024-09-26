@@ -1,17 +1,34 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function SearchBar() {
   const { dispatch } = useGlobalContext();
-  const [searchBarData, setSearchBar] = useState();
+  const [searchBarData, setSearchBar] = useState("");
 
   const handleOnChange = (e) => {
     const eTargetData = e.target.value;
     setSearchBar(eTargetData);
   };
-
+  console.log(searchBarData);
   const clickSearchImage = () => {
-    dispatch({ type: "TAKE_ONCHANGE_INPUT", payload: searchBarData });
+    if (searchBarData == 0) {
+      toast.warning(
+        "Please enter the name of the image you want to search for",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    } else {
+      dispatch({ type: "TAKE_ONCHANGE_INPUT", payload: searchBarData });
+    }
   };
 
   return (

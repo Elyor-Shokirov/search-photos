@@ -1,0 +1,68 @@
+.banner-top {
+  position: relative;
+  align-items: center;
+  display: flex;
+  padding-bottom: 60px;
+  margin-top: 80px;
+}
+.banner-top::before {
+  content: "";
+  background-image: url(../../public/img/dots.png);
+  position: absolute;
+  top: 0;
+  left: -40px;
+  right: 0;
+  bottom: 0;
+  background-position: left;
+  background-size: cover;
+  animation-name: rotate;
+  animation-duration: 80s;
+  animation-iteration-count: infinite;
+  width: 72%;
+}
+
+.banner-top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  width: 200vw;
+  border: 20px solid #85d1f6;
+  border-radius: 310px;
+  background: #fff;
+  z-index: 10;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .banner-top::before {
+    width: 93%;
+  }
+  .banner-top::after {
+    width: 100%;
+  }
+  .banner-top {
+    margin-left: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .banner-top::before {
+    width: 93%;
+  }
+  .banner-top::after {
+    width: 100%;
+  }
+  .banner-top {
+    margin-left: 0 !important;
+  }
+}
