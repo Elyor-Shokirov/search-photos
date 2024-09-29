@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ImageContainer from "../components/imageContainer";
+import { ImageContainer } from "../components";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function LikedImages() {
