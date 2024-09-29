@@ -24,14 +24,16 @@
 .banner-top::after {
   content: "";
   position: absolute;
+  border-radius: 50% 50% 0 50%;
   bottom: 0;
   top: 0;
   left: 0;
   width: 200vw;
   border: 20px solid #85d1f6;
-  border-radius: 310px;
+  /* border-radius: 310px; */
   background: #fff;
   z-index: 10;
+  width: 88%;
 }
 
 @keyframes rotate {

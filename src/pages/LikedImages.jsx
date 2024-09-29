@@ -1,51 +1,31 @@
-import { FaTrashCan } from "react-icons/fa6";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Image } from "../components";
+import { Link } from "react-router-dom";
+import ImageContainer from "../components/imageContainer";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function LikedImages() {
-  const { likedImages, dispatch } = useGlobalContext();
+  const { likedImages } = useGlobalContext();
+  console.log(likedImages);
 
-  const deleteImages = (image) => {
-    dispatch({ type: "DELETE", payload: image });
-  };
-
-  if (!likedImages.length) {
+  if (likedImages.length == 0) {
     return (
-      <h1 className="text-center mt-[50px]">
-        You dont have any liked images :(
-      </h1>
+      <div className="flex  justify-center items-center h-full gap-10 flex-col px-3 ">
+        <h1 className="text-center md:text-4xl font-monserat text-sm">
+          You dont have any liked images :(
+        </h1>
+        <Link to="/">
+          <button className="btn btn-sm md:btn-md btn-primary">Go Home</button>
+        </Link>
+      </div>
     );
   }
   return (
-    <div className="max-w-[1440px] m-auto">
-      <div className="flex justify-center mt-6">
-        <div className="font-semibold text-2xl">Liked Images</div>
+    <div>
+      <div className="max-w-[1440px] m-auto mb-20 px-3 md:p-0">
+        <div className="flex justify-center mt-6">
+          <div className="font-semibold text-2xl mb-5">Liked Images</div>
+        </div>
+        {likedImages.length > 0 && <ImageContainer images={likedImages} />}
       </div>
-      <ResponsiveMasonry
-        className="mt-5"
-        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-        <Masonry gutter="10px" columnsCount={3}>
-          {likedImages.length &&
-            likedImages.map((image) => {
-              const { id, urls, links, user } = image;
-              return (
-                <Image
-                  key={id}
-                  urls={urls}
-                  user={user}
-                  links={links}
-                  trashIcon={
-                    <FaTrashCan
-                      className="text-red-600"
-                      onClick={() => deleteImages(image.id)}
-                    />
-                  }
-                />
-              );
-            })}
-        </Masonry>
-      </ResponsiveMasonry>
     </div>
   );
 }

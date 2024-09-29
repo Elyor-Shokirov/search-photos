@@ -1,15 +1,16 @@
 import React from "react";
-
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
-function Badge() {
-  const { likedImages } = useGlobalContext();
+function Badge({ down }) {
+  const { likedImages, downloadImages } = useGlobalContext();
 
   return (
-    <div className="w-6 h-6 bg-red-600 flex items-center justify-center rounded-full">
-      <div className="text-white font-bold text-xs">
-        <p>{likedImages.length}</p>
-      </div>
+    <div className="">
+      {down ? (
+        <div className="badge badge-secondary">{downloadImages.length}</div>
+      ) : (
+        <div className="badge badge-secondary">{likedImages.length}</div>
+      )}
     </div>
   );
 }
