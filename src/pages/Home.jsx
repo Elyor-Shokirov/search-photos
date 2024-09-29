@@ -6,7 +6,7 @@ import { useFetch } from "../hooks/useFetch/useFetch";
 
 import { useActionData } from "react-router-dom";
 import { toast } from "react-toastify";
-import ImageContainer from "../components/imageContainer";
+import ImageContainer from "../components";
 
 export const action = async ({ request }) => {
   let formData = await request.formData();
