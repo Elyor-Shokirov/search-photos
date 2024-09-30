@@ -6,7 +6,7 @@ import Image from "./Image";
 function ImageContainer({ images, trashIcon }) {
   const { likedImages } = useGlobalContext();
   return (
-    <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 2, 900: 3 }}>
+    <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
       <Masonry gutter="10px" columnsCount={5}>
         {images.map((image) => {
           return (

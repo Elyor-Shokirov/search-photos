@@ -20,7 +20,7 @@ function LikedImages() {
   }
   return (
     <div>
-      <div className="max-w-[1440px] m-auto mb-20 px-3 md:p-0">
+      <div className="max-w-[1440px] m-auto mb-20 px-3 md:p-0 h-full">
         <div className="flex justify-center mt-6">
           <div className="font-semibold text-2xl mb-5">Liked Images</div>
         </div>

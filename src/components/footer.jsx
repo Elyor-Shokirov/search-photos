@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="bg-neutral">
+    <div className="bg-neutral sticky ">
       <footer className=" m-auto max-w-[1440px] footer  text-neutral-content items-center p-4">
         <aside className="grid-flow-col flex items-center">
           <svg
