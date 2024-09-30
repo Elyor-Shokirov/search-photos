@@ -32,11 +32,7 @@ function About() {
         <div className=" sm:col-span-7 col-span-12">
           <div className="banner-top !sm:ml-[200px] ml-16 ">
             <div className=" banner_img ml-[100px] mt-[60px] rounded-l-[50%] rounded-tl-[50%] rounded-tr-[50%] border-[15px] relative !z-[80] overflow-hidden border-black w-[60%] flex items-center ">
-              <img
-                className="w-[82%]"
-                src="../../public/img/admin2.png"
-                alt=""
-              />
+              <img className="w-[82%]" src="img/admin2.png" alt="" />
             </div>
           </div>
         </div>

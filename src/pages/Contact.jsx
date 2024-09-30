@@ -79,7 +79,7 @@ function Contact() {
             Contact Us
           </p>
         </div>
-        <div className="border-[1px] border-[#e2e8f0] rounded-xl bg-white shadow-2xl p-[30px]">
+        <div className="border-[1px] border-[#e2e8f0] rounded-xl bg-white shadow-2xl p-[30px] mb-8">
           <h3 className="pl-[10px] border-l-[2px] border-l-brandColor mb-8">
             Get In Touch
           </h3>
