@@ -35,7 +35,7 @@ function SearchBar() {
 
   return (
     <Form method="post">
-      <FormInput type="text" placeholder="Search..." name="search" />
+      <FormInput type="text" placeholder="Search..." name="search" searchbar />
     </Form>
   );
 }

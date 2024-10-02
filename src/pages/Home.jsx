@@ -31,6 +31,7 @@ export const action = async ({ request }) => {
 function Home() {
   const searchParamFormAction = useActionData();
   const [allImages, setAllImages] = useState([]);
+  console.log(searchParamFormAction);
 
   // const { dispatch, searchTitle, images } = useGlobalContext();
   const [pageParam, setPageParam] = useState(1);

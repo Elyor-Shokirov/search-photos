@@ -10,6 +10,10 @@ export default {
       fontFamily: {
         monserat: "Montserrat, sans-serif",
       },
+      backgroundImage: {
+        loginPageBg:
+          "url('/img/bg_img_loginPage.jpg'), linear-gradient(rgba(135, 80, 156, 0.9), rgba(135, 80, 156, 0.9))",
+      },
     },
   },
   // eslint-disable-next-line no-undef
