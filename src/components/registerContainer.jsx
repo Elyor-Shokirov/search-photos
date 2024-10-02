@@ -59,7 +59,7 @@ function RegisterContainer() {
       <div className="flex justify-center mt-3">
         <button className="btn w-full md:w-[200px] rounded-full">
           <img
-            src="/public/img/google-logo.png"
+            src="/img/google-logo.png"
             alt="Google LOGO"
             className="w-[10%]"
           />
