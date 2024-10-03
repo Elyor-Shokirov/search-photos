@@ -16,11 +16,11 @@ function SignIn() {
   console.log(loginActionData);
   return (
     <div>
-      <div className=" bg-loginPageBg bg-cover 	">
-        <div className="flex  justify-center items-center h-screen gap-10 flex-col p-[20px] md:px-3">
-          <div className="card w-full md:w-[500px] shadow-2xl z-90 bg-white">
+      <div className="bg-loginPageBg bg-cover">
+        <div className="flex h-screen flex-col items-center justify-center gap-10 p-[20px] md:px-3">
+          <div className="z-90 card w-full bg-white shadow-2xl md:w-[500px]">
             <div className="card-body">
-              <div className="text-center flex justify-center">
+              <div className="flex justify-center text-center">
                 <img
                   src="/img/logo_photoaparat.png"
                   alt="Logo"
@@ -28,7 +28,7 @@ function SignIn() {
                 />
               </div>
               <div className="flex justify-center">
-                <h2 className="card-title text-center mt-2">LOGIN</h2>
+                <h2 className="card-title mt-2 text-center">LOGIN</h2>
               </div>
               <LoginContainer />
             </div>

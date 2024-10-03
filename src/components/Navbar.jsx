@@ -5,6 +5,7 @@ import { PiUserCircleCheckFill } from "react-icons/pi";
 import { RiContactsBookFill, RiHomeSmileFill, RiSunLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Badge from "./badge";
+import UserInfo from "./userInfo";
 
 const themeFromLocalStorage = () => {
   return localStorage.getItem("theme") || "winter";
@@ -23,18 +24,20 @@ function Navbar() {
   return (
     <header className="py-5 shadow-xl">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="max-w-[1440px] m-auto">
+      <div className="m-auto max-w-[1440px]">
         <div className="navbar">
           <div className="navbar-start">
             <label
               htmlFor="my-drawer"
-              className="btn btn-ghost drawer-button lg:hidden">
+              className="btn btn-ghost drawer-button lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor">
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -52,17 +55,17 @@ function Navbar() {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <Link className="font-medium font-monserat" to="/">
+                <Link className="font-monserat font-medium" to="/">
                   Home
                 </Link>
               </li>
               <li>
-                <Link className="font-medium font-monserat" to="/about">
+                <Link className="font-monserat font-medium" to="/about">
                   About
                 </Link>
               </li>
               <li>
-                <Link className="font-medium font-monserat" to="/contact">
+                <Link className="font-monserat font-medium" to="/contact">
                   Contact
                 </Link>
               </li>
@@ -70,14 +73,14 @@ function Navbar() {
           </div>
 
           <div className="navbar-end flex items-center gap-7">
-            <Link to="/downloadImages" className="font-medium relative">
+            <Link to="/downloadImages" className="relative font-medium">
               <FaDownload className="text-2xl" />
               <div className="absolute right-[-17px] top-[-11px]">
                 <Badge down />
               </div>
             </Link>
 
-            <Link className="font-medium relative" to="/likedimages">
+            <Link className="relative font-medium" to="/likedimages">
               <FaHeart className="font-monserat text-2xl" />
               <div className="absolute right-[-16px] top-[-11px]">
                 <Badge />
@@ -88,21 +91,22 @@ function Navbar() {
               <input type="checkbox" onClick={toggaleTheme} />
 
               {/* sun icon */}
-              <RiSunLine className="swap-on text-2xl  fill-current" />
+              <RiSunLine className="swap-on fill-current text-2xl" />
 
               {/* moon icon */}
-              <IoMdMoon className="swap-off text-2xl fill-current" />
+              <IoMdMoon className="swap-off fill-current text-2xl" />
             </label>
+            <UserInfo />
           </div>
         </div>
       </div>
 
       {/* Drawer Menu - Embedded within the Navbar */}
-      <div className="drawer-side z-[100] ">
+      <div className="drawer-side z-[100]">
         <label htmlFor="my-drawer" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 bg-base-200 text-base-content h-svh flex  justify-center ">
+        <ul className="menu flex h-svh w-80 justify-center bg-base-200 p-4 text-base-content">
           <li>
-            <Link className="font-medium text-2xl font-monserat" to="/">
+            <Link className="font-monserat text-2xl font-medium" to="/">
               <span>
                 <RiHomeSmileFill />
               </span>
@@ -110,7 +114,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link className="font-medium text-2xl font-monserat" to="/about">
+            <Link className="font-monserat text-2xl font-medium" to="/about">
               <span>
                 <PiUserCircleCheckFill />
               </span>
@@ -118,7 +122,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link className="font-medium text-2xl font-monserat" to="/contact">
+            <Link className="font-monserat text-2xl font-medium" to="/contact">
               <span>
                 <RiContactsBookFill />
               </span>

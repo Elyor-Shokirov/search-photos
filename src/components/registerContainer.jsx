@@ -4,7 +4,7 @@ import { RiLockPasswordLine, RiUser2Line, RiUser3Line } from "react-icons/ri";
 import { Form, Link } from "react-router-dom";
 import FormInput from "./FormInput";
 
-function RegisterContainer() {
+function RegisterContainer({ forBtnGoogle }) {
   return (
     <Form method="post">
       <div className="flex flex-col gap-4">
@@ -44,20 +44,25 @@ function RegisterContainer() {
           icon={<RiLockPasswordLine />}
         />
       </div>
-      <div className="flex justify-end mt-4"></div>
-      <div className="flex justify-center mt-5">
+      <div className="mt-4 flex justify-end"></div>
+      <div className="mt-5 flex justify-center">
         <button
-          className=" btn bg-brandColor h-[38px] rounded-full w-full md:w-[200px]  text-white text-sm font-semibold whitespace-nowrap truncate mx-auto"
-          type="submit">
+          className="btn mx-auto h-[38px] w-full truncate whitespace-nowrap rounded-full bg-brandColor text-sm font-semibold text-white md:w-[200px]"
+          type="submit"
+        >
           Register
         </button>
       </div>
-      <div className="flex justify-between items-center mt-4">
-        <hr className=" w-full mr-2" /> <p className="text-gray-400">or</p>{" "}
-        <hr className="w-full ml-2" />
+      <div className="mt-4 flex items-center justify-between">
+        <hr className="mr-2 w-full" /> <p className="text-gray-400">or</p>{" "}
+        <hr className="ml-2 w-full" />
       </div>
-      <div className="flex justify-center mt-3">
-        <button className="btn w-full md:w-[200px] rounded-full">
+      <div className="mt-3 flex justify-center">
+        <button
+          type="button"
+          onClick={forBtnGoogle}
+          className="btn w-full rounded-full md:w-[200px]"
+        >
           <img
             src="/img/google-logo.png"
             alt="Google LOGO"
@@ -67,9 +72,9 @@ function RegisterContainer() {
         </button>
       </div>
       <div>
-        <p className="flex justify-end mt-3">
+        <p className="mt-3 flex justify-end">
           You have an account
-          <Link to="/login" className="ml-1 underline text-blue-600">
+          <Link to="/login" className="ml-1 text-blue-600 underline">
             Sign In
           </Link>
         </p>

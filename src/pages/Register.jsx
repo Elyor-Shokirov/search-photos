@@ -2,6 +2,8 @@ import React from "react";
 import { useActionData } from "react-router-dom";
 import RegisterContainer from "../components/registerContainer";
 
+import { useRegister } from "../hooks/useRegister";
+
 export const action = async ({ request }) => {
   let registerFormData = await request.formData();
   let formProps = Object.fromEntries(registerFormData);
@@ -9,21 +11,22 @@ export const action = async ({ request }) => {
 };
 
 function Register() {
+  const { registerWithGoogle } = useRegister();
   const registerActionData = useActionData();
   console.log(registerActionData);
 
   return (
     <>
-      <div className=" bg-loginPageBg bg-cover 	">
-        <div className="flex  justify-center items-center h-screen gap-10 flex-col p-[20px] md:px-3">
-          <div className="card w-full md:w-[500px] shadow-2xl z-90 bg-white">
+      <div className="bg-loginPageBg bg-cover">
+        <div className="flex h-screen flex-col items-center justify-center gap-10 p-[20px] md:px-3">
+          <div className="z-90 card w-full bg-white shadow-2xl md:w-[500px]">
             <div className="card-body">
               <div className="flex justify-center">
-                <h2 className="card-title text-center mt-2">
+                <h2 className="card-title mt-2 text-center">
                   Create an account
                 </h2>
               </div>
-              <RegisterContainer />
+              <RegisterContainer forBtnGoogle={registerWithGoogle} />
             </div>
           </div>
         </div>

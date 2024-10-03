@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProtectedRouters from "./components/ProtectedRouters";
+import { useGlobalContext } from "./hooks/useGlobalContext";
 import MainLayout from "./Layout/MainLayout";
 import {
   About,
@@ -14,10 +16,17 @@ import { action as HomeAction } from "./pages/Home";
 import Register, { action as RegisterAction } from "./pages/Register";
 import { action as SigInAction } from "./pages/SignIn";
 function App() {
+  const { user } = useGlobalContext();
+
   const routers = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+
+      element: (
+        <ProtectedRouters user={user}>
+          <MainLayout />
+        </ProtectedRouters>
+      ),
       children: [
         {
           index: true,
