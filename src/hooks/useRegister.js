@@ -1,8 +1,9 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { auth } from "../FireBase/fireBaseConfig";
+import { auth } from "../FireBase/FireBaseConfig";
 import { useGlobalContext } from "./useGlobalContext";
+
 export const useRegister = () => {
   const navigate = useNavigate();
   const { dispatch } = useGlobalContext();
