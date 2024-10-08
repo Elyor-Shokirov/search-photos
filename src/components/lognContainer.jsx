@@ -19,7 +19,7 @@ function LoginContainer() {
         />
         <FormInput
           login
-          type="text"
+          type="password"
           placeholder="Password"
           name="password"
           icon={<RiLockPasswordLine />}

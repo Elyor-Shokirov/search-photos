@@ -16,7 +16,7 @@ function FormInput({
         <div className="mt-7 md:w-[500px]">
           <label
             htmlFor="search-bar"
-            className="min-w-sm relative flex max-w-2xl flex-row items-center justify-center gap-2 rounded-2xl border bg-white px-2 py-2 shadow-2xl focus-within:border-gray-300 md:flex-row"
+            className="min-w-sm relative z-[90] flex max-w-2xl flex-row items-center justify-center gap-2 rounded-2xl border bg-white px-2 py-2 shadow-2xl focus-within:border-gray-300 md:flex-row"
           >
             <input
               type={type}

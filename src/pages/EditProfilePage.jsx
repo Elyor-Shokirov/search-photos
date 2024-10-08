@@ -45,7 +45,7 @@ function EditProfilePage() {
 
   console.log(user);
   return (
-    <div className="auto mt-10 max-w-[1440px] px-3 md:mt-0 md:p-0">
+    <div className="m-auto mt-8 max-w-[1440px] px-3 md:mt-auto md:p-0">
       <div className="flex justify-center">
         <div className="grid grid-cols-1 gap-9 md:grid-cols-12">
           <div className="col-span-12 md:col-span-4">

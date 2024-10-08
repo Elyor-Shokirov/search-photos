@@ -23,7 +23,7 @@ function UserInfo() {
       <p className="font-monserat text-sm font-medium">
         {user.displayName && user.displayName}
       </p>
-      <div className="dropdown dropdown-end">
+      <div className="dropdown dropdown-end relative">
         <div
           tabIndex={0}
           role="button"
@@ -37,7 +37,7 @@ function UserInfo() {
         </div>
         <ul
           tabIndex={0}
-          className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+          className="menu dropdown-content menu-sm z-[95] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
         >
           <li>
             <Link to="/profile">
@@ -47,12 +47,12 @@ function UserInfo() {
               </button>
             </Link>
           </li>
-          <li className="visible md:hidden">
+          <li className="md:hidden">
             <Link to="/likedimages">
               Liked Images <Badge />
             </Link>
           </li>
-          <li className="visible md:hidden">
+          <li className="md:hidden">
             <Link to="/downloadImages">
               Download Images <Badge down />
             </Link>
