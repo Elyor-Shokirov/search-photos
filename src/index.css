@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  html,
+  body,
+  #root {
+    @apply h-full;
+  }
+  #root {
+    @apply flex flex-col;
+  }
+  main {
+    @apply grow;
+  }
+  .custom_hover_image {
+    @apply absolute right-0 mt-2 mr-3 md:mt-5 md:mr-3 hover:cursor-pointer bg-white rounded grid md:w-8 md:h-8 w-5 h-5 place-items-center invisible opacity-0 group-hover:visible group-hover:opacity-100;
+  }
+  .download_trash_icon_classes {
+    @apply right-0 md:w-8 md:h-8 w-6 h-6 bottom-2 absolute  mt-5 mr-3 md:hover:cursor-pointer bg-slate-200 rounded grid  place-items-center md:invisible md:opacity-0 group-hover:visible md:group-hover:opacity-100;
+  }
+  .user_info_classes {
+    @apply flex left-2 absolute bottom-[2px] md:bottom-2 mt-5 mr-3 hover:cursor-pointer  rounded  px-2 h-8 place-items-center invisible opacity-0 group-hover:visible group-hover:opacity-100;
+  }
+}
