@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaDownload, FaHeart } from "react-icons/fa";
+import { GrDocumentText } from "react-icons/gr";
 import { IoMdMoon } from "react-icons/io";
 import { PiUserCircleCheckFill } from "react-icons/pi";
 import { RiContactsBookFill, RiHomeSmileFill, RiSunLine } from "react-icons/ri";
@@ -141,6 +142,14 @@ function Navbar() {
                 <RiContactsBookFill />
               </span>
               Contact
+            </Link>
+          </li>
+          <li>
+            <Link className="font-monserat text-2xl font-medium" to="/blogs">
+              <span>
+                <GrDocumentText />
+              </span>
+              Blogs
             </Link>
           </li>
         </ul>

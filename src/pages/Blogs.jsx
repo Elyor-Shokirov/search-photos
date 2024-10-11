@@ -29,7 +29,7 @@ function Blogs() {
           data.map((blog) => (
             <div key={blog.id} className="col-span-1 md:col-span-12">
               <div className="card bg-base-100 shadow-xl lg:card-side">
-                <figure className="min-w-[440px]">
+                <figure className="md:min-w-[440px]">
                   <img src={blog.img} alt="Album" />
                 </figure>
                 <div className="card-body !px-3">
