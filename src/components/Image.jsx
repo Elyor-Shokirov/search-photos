@@ -4,6 +4,7 @@ import { GrDownload } from "react-icons/gr";
 import { PiCaretDown } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useFireStore } from "../hooks/useFireStore";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 /* eslint-disable react/prop-types */
@@ -14,6 +15,8 @@ function Image({ images, added, trashIcon }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { dispatch, likedImages, downloadImages } = useGlobalContext();
+
+  const { addDocument, deleteDocument } = useFireStore();
   let screen = window.innerWidth >= 430;
   const addLikedImage = (images, e) => {
     console.log("bosildi");
@@ -22,29 +25,9 @@ function Image({ images, added, trashIcon }) {
       return images.id === img.id;
     });
     if (!isLikedImage) {
-      dispatch({ type: "LIKE", payload: images });
-      toast.success("The image has been added to your favorite images", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      addDocument("likedImages", images.id, images);
     } else {
-      dispatch({ type: "UNLIKE", payload: images.id });
-      toast.warning("The picture has been removed from the Favorites!", {
-        position: "bottom-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      deleteDocument("likedImages", images.id, images);
     }
   };
 
@@ -95,19 +78,21 @@ function Image({ images, added, trashIcon }) {
 
   return (
     <Link to={`/imageinfo/${images.id}`}>
-      <div className="relative group">
+      <div className="group relative">
         {!added && (
           <span
             onClick={(e) => addLikedImage(images, e)}
-            className="md:custom_hover_image absolute bottom-[-30px] md:bottom-auto border-[1px] border-[#767676] p-1 rounded md:border-none">
-            <FaHeart className="text-brandColor md:text-[#767676] text-sm " />
+            className="md:custom_hover_image absolute bottom-[-30px] rounded border-[1px] border-[#767676] p-1 md:bottom-auto md:border-none"
+          >
+            <FaHeart className="text-sm text-brandColor md:text-[#767676]" />
           </span>
         )}
         {added && (
           <span
             onClick={(e) => addLikedImage(images, e)}
-            className="md:custom_hover_image absolute bottom-[-30px] md:bg-red-600 bg-red-600 md:bottom-auto border-[1px] border-red-600 p-1 rounded">
-            <FaHeart className="text-white text-sm " />
+            className="md:custom_hover_image absolute bottom-[-30px] rounded border-[1px] border-red-600 bg-red-600 p-1 md:bottom-auto md:bg-red-600"
+          >
+            <FaHeart className="text-sm text-white" />
           </span>
         )}
 
@@ -115,7 +100,7 @@ function Image({ images, added, trashIcon }) {
           <img
             src={urls.regular}
             alt={alt_description}
-            className="md:mt-0 md:mb-0 mt-2 mb-12"
+            className="mb-12 mt-2 md:mb-0 md:mt-0"
           />
         }
 
@@ -128,62 +113,73 @@ function Image({ images, added, trashIcon }) {
                 modal.showModal();
               }
             }}
-            className="md:download_trash_icon_classes bottom-[-40px]  absolute right-0  md:bottom-2 visible opacity-100">
+            className="md:download_trash_icon_classes visible absolute bottom-[-40px] right-0 opacity-100 md:bottom-2"
+          >
             {isSmallScreen ? (
-              <button className="border-[1px] border-[#d1d1d1] text-[#767676] h-[32px] px-[11px] rounded-l ">
+              <button className="h-[32px] rounded-l border-[1px] border-[#d1d1d1] px-[11px] text-[#767676]">
                 Delete
               </button>
             ) : (
-              <FaTrashAlt className="text-red-800 text-[12px] md:text-[15px]" />
+              <FaTrashAlt className="text-[12px] text-red-800 md:text-[15px]" />
             )}
           </span>
         ) : (
           <span
             onClick={(e) => handleAddDownloadImages(images, e)}
-            className="md:download_trash_icon_classes bottom-[-40px]  absolute right-0  md:bottom-2">
+            className="md:download_trash_icon_classes absolute bottom-[-40px] right-0 md:bottom-2"
+          >
             <span className="flex items-center">
               {isSmallScreen ? (
                 <>
                   <button
                     onClick={(e) => downloadButtonIimage(e)}
-                    className="border-[1px] border-[#d1d1d1] text-[#767676] h-[32px] px-[11px] rounded-l ">
+                    className="h-[32px] rounded-l border-[1px] border-[#d1d1d1] px-[11px] text-[#767676]"
+                  >
                     Download
                   </button>
                   <button
                     onClick={() => handleOpenDropDown()}
-                    className="border-[1px] border-[#d1d1d1] text-[#767676] h-[32px] px-[11px] rounded-r !pointer-events-noneborder-l-0">
+                    className="!pointer-events-noneborder-l-0 h-[32px] rounded-r border-[1px] border-[#d1d1d1] px-[11px] text-[#767676]"
+                  >
                     <PiCaretDown />
                   </button>
                   {isOpen && (
                     <div>
                       <div
-                        className={`transition-all duration-300 transform ease-in-out ${
+                        className={`transform transition-all duration-300 ease-in-out ${
                           isOpen
-                            ? "opacity-100 translate-y-0"
-                            : "opacity-0 -translate-y-4"
-                        } absolute mt-6 right-1 w-48 bg-white shadow-lg rounded-lg  z-20`}
-                        style={{ display: isOpen ? "block" : "none" }}>
+                            ? "translate-y-0 opacity-100"
+                            : "-translate-y-4 opacity-0"
+                        } absolute right-1 z-20 mt-6 w-48 rounded-lg bg-white shadow-lg`}
+                        style={{ display: isOpen ? "block" : "none" }}
+                      >
                         <ul className="py-2">
                           <li
                             onClick={() =>
                               window.open(urls.small + "&force=true", "_blank")
                             }
-                            className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                            <span>Smal</span> <span>(640 x 960)</span>
+                            className="cursor-pointer px-4 py-2 hover:bg-gray-200"
+                          >
+                            <span className="myPharagrap">Smal</span>
+                            <span className="myPharagrap">(640 x 960)</span>
                           </li>
                           <li
                             onClick={() =>
                               window.open(urls.raw + "&force=true", "_blank")
                             }
-                            className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                            <span>Medium</span> <span>(640 x 960)</span>
+                            className="cursor-pointer px-4 py-2 hover:bg-gray-200"
+                          >
+                            <span className="myPharagrap">Medium</span>
+                            <span className="myPharagrap">(640 x 960)</span>
                           </li>
                           <li
                             onClick={() =>
                               window.open(urls.full + "&force=true", "_blank")
                             }
-                            className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                            <span>Large</span> <span>(2400 x 3600)</span>
+                            className="cursor-pointer px-4 py-2 hover:bg-gray-200"
+                          >
+                            <span className="myPharagrap">Large</span>{" "}
+                            <span className="myPharagrap">(2400 x 3600)</span>
                           </li>
                         </ul>
                       </div>
@@ -197,20 +193,20 @@ function Image({ images, added, trashIcon }) {
           </span>
         )}
 
-        <span className="md:user_info_classes absolute md:bottom-2 md:top-auto top-[-25px] pb-2 flex items-center ">
+        <span className="md:user_info_classes absolute top-[-25px] flex items-center pb-2 md:bottom-2 md:top-auto">
           <img
-            className="md:w-8 md:h-8 md:rounded-full w-5 h-5 rounded-full"
+            className="h-5 w-5 rounded-full md:h-8 md:w-8 md:rounded-full"
             src={user.profile_image.large}
             alt={user.name + " avatar"}
           />
-          <p className="md:text-white font-monserat ml-2 text-[10px] md:text-base md:font-medium font-bold text-xs">
+          <p className="ml-2 font-monserat text-[10px] text-xs font-bold md:text-base md:font-medium md:text-white">
             {user.first_name} {user.last_name}
           </p>
         </span>
 
         <dialog id="my_modal_4" className="modal">
           <div className="modal-box w-11/12 max-w-xl">
-            <div className="flex justify-center ">
+            <div className="flex justify-center">
               <FaTrashAlt className="text-center text-5xl" />
             </div>
 
@@ -224,7 +220,8 @@ function Image({ images, added, trashIcon }) {
                 </button>
                 <button
                   onClick={(e) => handleDeleteDownloadImages(images, e)}
-                  className="btn btn-error text-white">
+                  className="btn btn-error text-white"
+                >
                   Yes, I'm sure
                 </button>
               </form>

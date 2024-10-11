@@ -68,6 +68,11 @@ function Navbar() {
                 </Link>
               </li>
               <li>
+                <Link className="font-monserat font-medium" to="/blogs">
+                  Blogs
+                </Link>
+              </li>
+              <li>
                 <Link className="font-monserat font-medium" to="/contact">
                   Contact
                 </Link>

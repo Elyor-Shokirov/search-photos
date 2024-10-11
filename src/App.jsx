@@ -12,6 +12,7 @@ import { useGlobalContext } from "./hooks/useGlobalContext";
 import MainLayout from "./Layout/MainLayout";
 import {
   About,
+  Blogs,
   Contact,
   ForgatPassword,
   Home,
@@ -45,6 +46,10 @@ function App() {
         {
           path: "/about",
           element: <About />,
+        },
+        {
+          path: "/blogs",
+          element: <Blogs />,
         },
         {
           path: "/contact",

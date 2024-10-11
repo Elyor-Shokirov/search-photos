@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         brandColor: "#85d1f6",
+        customParagraphColor: "#000",
       },
       fontFamily: {
         monserat: "Montserrat, sans-serif",

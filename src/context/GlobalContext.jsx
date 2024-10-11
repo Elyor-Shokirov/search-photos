@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import { useCollection } from "../hooks/useCollection";
 export const GlobalContext = createContext();
 
 // const dataFromLocal = () => {
@@ -20,8 +21,8 @@ const changeState = (state, action) => {
       return { ...state, authReady: true };
     case "LOG_OUT":
       return { ...state, user: null };
-    case "LIKE":
-      return { ...state, likedImages: [...state.likedImages, payload] };
+    case "ADD_LIKEDIMAGES":
+      return { ...state, likedImages: payload };
     case "DOWNLOAD":
       return {
         ...state,
@@ -45,6 +46,8 @@ const changeState = (state, action) => {
 };
 
 export function GlobalContextProvider({ children }) {
+  const { data: likedImages } = useCollection("likedImages");
+
   const [state, dispatch] = useReducer(changeState, {
     user: null,
     authReady: false,
@@ -55,6 +58,11 @@ export function GlobalContextProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("my-splash-data", JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    if (likedImages)
+      dispatch({ type: "ADD_LIKEDIMAGES", payload: likedImages });
+  }, [likedImages]);
 
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
