@@ -47,22 +47,24 @@ function Image({ images, added, trashIcon }) {
 
   const handleAddDownloadImages = (images, e) => {
     e.preventDefault();
-    const addDownloadImage = downloadImages.some((img) => {
+    const addDownloadImage = downloadImages.find((img) => {
       return images.id === img.id;
     });
 
     if (!addDownloadImage) {
-      dispatch({ type: "DOWNLOAD", payload: images });
+      addDocument("downloadImages", { ...images, uid: authUser.uid });
+    } else {
+      deleteDocument("downloadImages", addDownloadImage._id);
     }
   };
 
   const handleDeleteDownloadImages = (images, e) => {
     e.preventDefault();
-    const addDownloadImage = downloadImages.some((img) => {
+    const addDownloadImage = downloadImages.find((img) => {
       return images.id === img.id;
     });
     if (addDownloadImage) {
-      dispatch({ type: "DELETEDOWNLOAD", payload: images.id });
+      deleteDocument("downloadImages", addDownloadImage._id);
     }
   };
 

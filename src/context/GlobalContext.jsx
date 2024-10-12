@@ -23,11 +23,11 @@ const changeState = (state, action) => {
       return { ...state, user: null };
     case "ADD_LIKEDIMAGES":
       return { ...state, likedImages: payload };
+    case "BLOGS":
+      return { ...state, blogs: payload };
     case "DOWNLOAD":
-      return {
-        ...state,
-        downloadImages: [...state.downloadImages, payload],
-      };
+      return { ...state, downloadImages: payload };
+
     case "DELETEDOWNLOAD":
       return {
         ...state,
@@ -50,13 +50,24 @@ export function GlobalContextProvider({ children }) {
     user: null,
     authReady: false,
     likedImages: [],
+    blogs: [],
     downloadImages: [],
   });
+
   const { data: likedImages } = useCollection("likedImages", [
     "uid",
     "==",
     state.user && state.user.uid,
   ]);
+
+  const { blog: blogs } = useCollection("images");
+  const { data: downloadImages } = useCollection("downloadImages", [
+    "uid",
+    "==",
+    state.user && state.user.uid,
+  ]);
+
+  console.log("downloadImages", downloadImages);
 
   useEffect(() => {
     localStorage.setItem("my-splash-data", JSON.stringify(state));
@@ -66,6 +77,13 @@ export function GlobalContextProvider({ children }) {
     if (likedImages)
       dispatch({ type: "ADD_LIKEDIMAGES", payload: likedImages });
   }, [likedImages]);
+
+  useEffect(() => {
+    if (downloadImages) dispatch({ type: "DOWNLOAD", payload: downloadImages });
+  }, [downloadImages]);
+  useEffect(() => {
+    if (blogs) dispatch({ type: "BLOGS", payload: blogs });
+  }, [blogs]);
 
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>

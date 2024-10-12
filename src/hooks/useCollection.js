@@ -9,23 +9,41 @@ import {
 import { useEffect, useState } from "react";
 import { db } from "../fireBase/firebaseConfig";
 
-export const useCollection = (collectionName, whereData) => {
-  const [data, setData] = useState();
+export const useCollection = (collectionName, whereData = []) => {
+  const [data, setData] = useState(null);
+  const [blog, setBlog] = useState(null);
+
   useEffect(() => {
     if (whereData[2]) {
       const q = query(collection(db, collectionName), where(...whereData));
-      onSnapshot(q, (querySnapshot) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const queryData = [];
         querySnapshot.forEach((doc) => {
           queryData.push({ _id: doc.id, ...doc.data() });
         });
         setData(queryData);
       });
-    }
-  }, [whereData[2]]);
 
-  return { data };
+      return () => unsubscribe(); // Cleanup function
+    }
+  }, [whereData[2]]); // collectionName ga bog'liq
+
+  useEffect(() => {
+    const collectionRef = collection(db, collectionName);
+    const unsubscribe = onSnapshot(collectionRef, (querySnapshot) => {
+      const queryData = querySnapshot.docs.map((doc) => ({
+        _id: doc.id,
+        ...doc.data(),
+      }));
+      setBlog(queryData);
+    });
+
+    return () => unsubscribe();
+  }, [collectionName]);
+
+  return { data, blog };
 };
+
 // const getData = async () => {
 //  const querySnapshot = await getDocs(collection(db, collectionName));
 //  const queryData = [];

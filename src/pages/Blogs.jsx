@@ -5,8 +5,8 @@ import { db } from "../fireBase/firebaseConfig";
 import { useCollection } from "../hooks/useCollection";
 
 function Blogs() {
-  const { data } = useCollection("images");
-  console.log(data);
+  const { blog } = useCollection("images");
+  console.log(blog);
 
   const closeBtn = (e) => {
     e.preventDefault();
@@ -25,8 +25,8 @@ function Blogs() {
         Blogs
       </h1>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
-        {data &&
-          data.map((blog) => (
+        {blog &&
+          blog.map((blog) => (
             <div key={blog.id} className="col-span-1 md:col-span-12">
               <div className="card bg-base-100 shadow-xl lg:card-side">
                 <figure className="md:min-w-[440px]">
