@@ -31,7 +31,6 @@ export const action = async ({ request }) => {
 function Home() {
   const searchParamFormAction = useActionData();
   const [allImages, setAllImages] = useState([]);
-  console.log(searchParamFormAction);
 
   // const { dispatch, searchTitle, images } = useGlobalContext();
   const [pageParam, setPageParam] = useState(1);
@@ -41,7 +40,7 @@ function Home() {
   const { data, isPending, error } = useFetch(
     `https://api.unsplash.com/search/photos?client_id=${
       import.meta.env.VITE_ACCESS_KEY
-    }&query=${searchParamFormAction ?? "all"}&page=${pageParam}`
+    }&query=${searchParamFormAction ?? "all"}&page=${pageParam}`,
   );
 
   useEffect(() => {
@@ -80,14 +79,15 @@ function Home() {
 
   return (
     <div>
-      <div className="max-w-[1440px] m-auto  pl-5 pr-5">
+      <div className="m-auto max-w-[1440px] pl-5 pr-5">
         <SearchBar />
-        <div className="mt-8 ">
+        <div className="mt-8">
           {isPending && <h1>Loading...</h1>}
           {allImages.length > 0 && <ImageContainer images={allImages} />}
           <button
             onClick={() => setPageParam(pageParam + 1)}
-            className="btn btm-info mb-10 border py-2 w-full mt-10 bg-brandColor rounded text-white hover:bg-blue-400">
+            className="btm-info btn mb-10 mt-10 w-full rounded border bg-brandColor py-2 text-white hover:bg-blue-400"
+          >
             Read More
           </button>
         </div>

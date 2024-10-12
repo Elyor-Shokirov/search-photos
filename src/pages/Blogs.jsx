@@ -6,7 +6,6 @@ import { useCollection } from "../hooks/useCollection";
 
 function Blogs() {
   const { blog } = useCollection("images");
-  console.log(blog);
 
   const closeBtn = (e) => {
     e.preventDefault();

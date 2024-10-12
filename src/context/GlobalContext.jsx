@@ -67,8 +67,6 @@ export function GlobalContextProvider({ children }) {
     state.user && state.user.uid,
   ]);
 
-  console.log("downloadImages", downloadImages);
-
   useEffect(() => {
     localStorage.setItem("my-splash-data", JSON.stringify(state));
   }, [state]);

@@ -53,7 +53,7 @@ function Contact() {
       const req = await fetch(url, options);
       const resData = await req.json();
       toast.success(
-        "Your information has been received. We will contact you soon"
+        "Your information has been received. We will contact you soon",
       );
       if (resData.ok) {
         setInputValue({
@@ -63,44 +63,41 @@ function Contact() {
           text: " ",
         });
       }
-      console.log(inputValue);
       history("/");
     } else {
       toast.error("Please enter the complete information");
     }
-
-    console.log(inputValue);
   }
   return (
-    <div className="max-w-[1440px] m-auto px-4 sm:px-6 lg:px-8">
+    <div className="m-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
       <div>
-        <div className="sm:mt-[50px] mt-5 flex justify-center mb-5">
-          <p className=" font-monserat font-bold text-[25px] md:text-[50px]">
+        <div className="mb-5 mt-5 flex justify-center sm:mt-[50px]">
+          <p className="font-monserat text-[25px] font-bold md:text-[50px]">
             Contact Us
           </p>
         </div>
-        <div className="border-[1px] border-[#e2e8f0] rounded-xl bg-white shadow-2xl p-[30px] mb-8">
-          <h3 className="pl-[10px] border-l-[2px] border-l-brandColor mb-8">
+        <div className="mb-8 rounded-xl border-[1px] border-[#e2e8f0] bg-white p-[30px] shadow-2xl">
+          <h3 className="mb-8 border-l-[2px] border-l-brandColor pl-[10px]">
             Get In Touch
           </h3>
           <form action="" onSubmit={HandleClick}>
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 ">
-              <div className="md:col-span-6 col-span-12">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
+              <div className="col-span-12 md:col-span-6">
                 <input
                   onChange={handleOnChange}
                   id="name"
                   name="name"
                   placeholder="Your name "
-                  className="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white border-[1px] shadow-2xl"
+                  className="w-full flex-1 rounded-md border-[1px] bg-white px-6 py-2 shadow-2xl outline-none"
                 />
               </div>
-              <div className="md:col-span-6 col-span-12">
+              <div className="col-span-12 md:col-span-6">
                 <input
                   onChange={handleOnChange}
                   id="email"
                   name="email"
                   placeholder="Your email"
-                  className="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white border-[1px] shadow-2xl"
+                  className="w-full flex-1 rounded-md border-[1px] bg-white px-6 py-2 shadow-2xl outline-none"
                 />
               </div>
               <div className="col-span-12">
@@ -109,7 +106,7 @@ function Contact() {
                   id="subject"
                   name="subject"
                   placeholder="Subject"
-                  className="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white border-[1px] shadow-2xl"
+                  className="w-full flex-1 rounded-md border-[1px] bg-white px-6 py-2 shadow-2xl outline-none"
                 />
               </div>
               <div className="col-span-12">
@@ -119,11 +116,11 @@ function Contact() {
                   id="subject"
                   name="text"
                   placeholder="Subject"
-                  className="h-[200px] px-6 py-2 w-full rounded-md flex-1 outline-none bg-white border-[1px] shadow-2xl"
+                  className="h-[200px] w-full flex-1 rounded-md border-[1px] bg-white px-6 py-2 shadow-2xl outline-none"
                 />
               </div>
               <div>
-                <button className="bg-brandColor px-8 py-3 rounded-md text-white font-monserat font-bold">
+                <button className="rounded-md bg-brandColor px-8 py-3 font-monserat font-bold text-white">
                   Send
                 </button>
               </div>

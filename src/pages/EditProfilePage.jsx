@@ -20,7 +20,6 @@ function EditProfilePage() {
   const { editWithConfig } = useEdit();
   const { user } = useGlobalContext();
   const edtFormAction = useActionData();
-  console.log("action", edtFormAction);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSelectFile = (e) => {
@@ -43,7 +42,6 @@ function EditProfilePage() {
     }
   }, [edtFormAction]);
 
-  console.log(user);
   return (
     <div className="mt-5 max-w-[1440px] px-4 md:mt-8 xl:m-auto">
       <div className="xl:flex xl:justify-center">
