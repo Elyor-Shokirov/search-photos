@@ -14,20 +14,24 @@ function Image({ images, added, trashIcon }) {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const { dispatch, likedImages, downloadImages } = useGlobalContext();
+  const {
+    dispatch,
+    likedImages,
+    downloadImages,
+    user: authUser,
+  } = useGlobalContext();
 
   const { addDocument, deleteDocument } = useFireStore();
   let screen = window.innerWidth >= 430;
   const addLikedImage = (images, e) => {
-    console.log("bosildi");
     e.preventDefault();
-    const isLikedImage = likedImages.some((img) => {
+    const isLikedImage = likedImages.find((img) => {
       return images.id === img.id;
     });
     if (!isLikedImage) {
-      addDocument("likedImages", images.id, images);
+      addDocument("likedImages", { ...images, uid: authUser.uid });
     } else {
-      deleteDocument("likedImages", images.id, images);
+      deleteDocument("likedImages", isLikedImage._id);
     }
   };
 
@@ -187,7 +191,10 @@ function Image({ images, added, trashIcon }) {
                   )}
                 </>
               ) : (
-                <GrDownload />
+                <GrDownload
+                  className="text-black"
+                  onClick={(e) => downloadButtonIimage(e)}
+                />
               )}
             </span>
           </span>

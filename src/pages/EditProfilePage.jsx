@@ -45,10 +45,10 @@ function EditProfilePage() {
 
   console.log(user);
   return (
-    <div className="m-auto mt-8 max-w-[1440px] px-3 md:mt-auto md:p-0">
-      <div className="flex justify-center">
-        <div className="grid grid-cols-1 gap-9 md:grid-cols-12">
-          <div className="col-span-12 md:col-span-4">
+    <div className="mt-5 max-w-[1440px] px-4 md:mt-8 xl:m-auto">
+      <div className="xl:flex xl:justify-center">
+        <div className="grid grid-cols-1 gap-4 md:gap-10 md:px-0 xl:grid-cols-12">
+          <div className="col-span-12 xl:col-span-4">
             <div className="card min-h-[460px] w-full bg-base-100 shadow-xl">
               <figure className="flex flex-col px-10 pt-10">
                 <h2 className="carzd-title font-monserat font-semibold">
@@ -91,7 +91,7 @@ function EditProfilePage() {
               </div>
             </div>
           </div>
-          <div className="col-span-12 md:col-span-8">
+          <div className="col-span-12 xl:col-span-8">
             <div className="card mb-10 w-full bg-base-100 px-10 py-8 shadow-xl">
               <p className="text-center font-monserat text-2xl font-normal">
                 Edit Profile
