@@ -15,6 +15,8 @@ const changeState = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case "SET_LOADING":
+      return { ...state, loading: payload };
     case "LOGIN":
       return { ...state, user: payload };
     case "AUTH_READY":
@@ -52,6 +54,7 @@ export function GlobalContextProvider({ children }) {
     likedImages: [],
     blogs: [],
     downloadImages: [],
+    loading: false,
   });
 
   const { data: likedImages } = useCollection("likedImages", [

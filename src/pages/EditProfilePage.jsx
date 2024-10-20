@@ -18,14 +18,21 @@ export const action = async ({ request }) => {
 
 function EditProfilePage() {
   const { editWithConfig } = useEdit();
-  const { user } = useGlobalContext();
+  const { user, loading } = useGlobalContext();
   const edtFormAction = useActionData();
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSelectFile = (e) => {
-    const file = e.target.files[0]; // Faylni olish
-    if (file) {
-      setSelectedFile(file); // Agar fayl bo'lsa, state-ga saqlash
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    if (file.size % 1024 < 1024) {
+      reader.addEventListener("load", () => {
+        setSelectedFile(reader.result);
+      });
+      reader.readAsDataURL(file);
+    } else {
+      toast.warn("Oops, Image must be less than 1 MB");
     }
   };
 
@@ -56,9 +63,9 @@ function EditProfilePage() {
                   <div className="w-36 rounded-full">
                     <img
                       src={
-                        selectedFile
-                          ? URL.createObjectURL(selectedFile)
-                          : user.photoURL
+                        selectedFile ||
+                        user.photoURL ||
+                        `https://api.dicebear.com/9.x/initials/svg?seed=${user.displayName}`
                       }
                       alt={`${user.displayName} Avatar`}
                     />
@@ -74,6 +81,7 @@ function EditProfilePage() {
                     </label>
                     <input
                       onChange={handleSelectFile}
+                      accept="image/*"
                       id="file-upload"
                       type="file"
                       className="file-input file-input-bordered file-input-info hidden w-full max-w-xs"
@@ -89,11 +97,17 @@ function EditProfilePage() {
               </div>
             </div>
           </div>
+
           <div className="col-span-12 xl:col-span-8">
             <div className="card mb-10 w-full bg-base-100 px-10 py-8 shadow-xl">
               <p className="text-center font-monserat text-2xl font-normal">
                 Edit Profile
               </p>
+              {loading && (
+                <span className="absolute left-0 top-0 inline-block h-full w-full rounded bg-black opacity-35">
+                  <span className="loading loading-bars loading-md absolute left-[50%] top-[50%] -translate-y-[-50%] translate-x-[-50%]"></span>
+                </span>
+              )}
               <EditContainer user={user} />
             </div>
           </div>

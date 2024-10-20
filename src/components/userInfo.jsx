@@ -8,6 +8,7 @@ import Badge from "./badge";
 
 function UserInfo() {
   const { user, dispatch } = useGlobalContext();
+  console.log(user);
   const signOutUser = async () => {
     try {
       await signOut(auth);

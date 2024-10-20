@@ -1,12 +1,17 @@
 import { updateEmail, updatePassword, updateProfile } from "firebase/auth";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage"; // Firebase Storage uchun kerakli funksiya
+import {
+  getDownloadURL,
+  ref,
+  uploadBytes,
+  uploadString,
+} from "firebase/storage"; // Firebase Storage uchun kerakli funksiya
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { auth, storage } from "../fireBase/firebaseConfig";
 import { useGlobalContext } from "./useGlobalContext";
 
 export function useEdit() {
-  const { dispatch } = useGlobalContext(); // Call useGlobalContext to get dispatch
+  const { dispatch, loading } = useGlobalContext(); // Call useGlobalContext to get dispatch
   const navigate = useNavigate();
   const editWithConfig = async (
     first_name,
@@ -16,6 +21,7 @@ export function useEdit() {
     avatar,
     currentPassword,
   ) => {
+    dispatch({ type: "SET_LOADING", payload: true });
     const displayName = `${first_name} ${last_name}`;
 
     try {
@@ -23,7 +29,7 @@ export function useEdit() {
 
       if (avatar) {
         const storageRef = ref(storage, `avatars/${auth.currentUser.uid}`);
-        const snapshot = await uploadBytes(storageRef, avatar);
+        const snapshot = await uploadString(storageRef, avatar, "data_url");
         photoURL = await getDownloadURL(snapshot.ref);
       }
 
@@ -41,6 +47,7 @@ export function useEdit() {
       }
 
       const updatedUser = auth.currentUser;
+      dispatch({ type: "SET_LOADING", payload: false });
       dispatch({ type: "LOGIN", payload: updatedUser });
       navigate("/");
       toast.success(`Your profile has been modified successfully`);
