@@ -32,15 +32,36 @@ function Home() {
   const searchParamFormAction = useActionData();
   const [allImages, setAllImages] = useState([]);
 
+  const randomWords = [
+    "Cars",
+    "Finland",
+    "Uzbekistan",
+    "Animals",
+    "Cats",
+    "IT",
+    "Computers",
+    "Youtube",
+    "google",
+    "Apple",
+  ];
+
   // const { dispatch, searchTitle, images } = useGlobalContext();
   const [pageParam, setPageParam] = useState(1);
 
   const prevSearchParam = useRef(searchParamFormAction);
 
+  const [randomQuery, setRandomQuery] = useState();
+
+  useEffect(() => {
+    const randomWord =
+      randomWords[Math.floor(Math.random() * randomWords.length)];
+    setRandomQuery(randomWord);
+  }, []);
+
   const { data, isPending, error } = useFetch(
     `https://api.unsplash.com/search/photos?client_id=${
       import.meta.env.VITE_ACCESS_KEY
-    }&query=${searchParamFormAction ?? "all"}&page=${pageParam}`,
+    }&query=${searchParamFormAction ?? randomQuery}&page=${pageParam}`,
   );
 
   useEffect(() => {

@@ -51,11 +51,11 @@ function Image({ images, added, trashIcon }) {
       return images.id === img.id;
     });
 
-    if (!addDownloadImage) {
-      addDocument("downloadImages", { ...images, uid: authUser.uid });
-    } else {
-      deleteDocument("downloadImages", addDownloadImage._id);
-    }
+    // if (!addDownloadImage) {
+    //   addDocument("downloadImages", { ...images, uid: authUser.uid });
+    // } else {
+    //   deleteDocument("downloadImages", addDownloadImage._id);
+    // }
   };
 
   const handleDeleteDownloadImages = (images, e) => {
@@ -132,7 +132,7 @@ function Image({ images, added, trashIcon }) {
         ) : (
           <span
             onClick={(e) => handleAddDownloadImages(images, e)}
-            className="md:download_trash_icon_classes absolute bottom-[-40px] right-0 md:bottom-2"
+            className="md:download_trash_icon_classes absolute bottom-[-40px] right-0 z-10 md:bottom-2"
           >
             <span className="flex items-center">
               {isSmallScreen ? (

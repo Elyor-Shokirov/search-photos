@@ -7,7 +7,7 @@ function About() {
       <div className="grid grid-cols-1 md:mt-[150px] md:grid-cols-12">
         <div className="col-span-12 mt-[80px] xl:col-span-5">
           <p className="font-monserat text-xl">Hi There, Im</p>
-          <h1 className="text-[60px] text-[#292929] text-[700]">
+          <h1 className="aboutText text-[60px] text-[#292929] text-[700]">
             Elyor Shokirov
           </h1>
           <span className="mb-[9px] mt-0 inline-block h-[3px] w-[140px] bg-brandColor"></span>

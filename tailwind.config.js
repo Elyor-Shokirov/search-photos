@@ -7,6 +7,7 @@ export default {
       colors: {
         brandColor: "#85d1f6",
         customParagraphColor: "#000",
+        bgColorCard: "#282a36",
       },
       fontFamily: {
         monserat: "Montserrat, sans-serif",

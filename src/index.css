@@ -27,5 +27,11 @@
     [data-theme="dracula"] .myPharagrap {
       @apply text-customParagraphColor;
     }
+    [data-theme="dracula"] .bgDarkBlack {
+      @apply bg-bgColorCard;
+    }
+    [data-theme="dracula"] .aboutText {
+      @apply text-white;
+    }
   }
 }

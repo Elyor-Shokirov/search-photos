@@ -76,8 +76,8 @@ function Contact() {
             Contact Us
           </p>
         </div>
-        <div className="mb-8 rounded-xl border-[1px] border-[#e2e8f0] bg-white p-[30px] shadow-2xl">
-          <h3 className="mb-8 border-l-[2px] border-l-brandColor pl-[10px]">
+        <div className="bgDarkBlack mb-8 rounded-xl border-[1px] border-[#e2e8f0] bg-white p-[30px] shadow-2xl">
+          <h3 className="aboutText mb-8 border-l-[2px] border-l-brandColor pl-[10px]">
             Get In Touch
           </h3>
           <form action="" onSubmit={HandleClick}>
